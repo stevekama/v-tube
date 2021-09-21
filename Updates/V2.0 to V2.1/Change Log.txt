@@ -1,0 +1,6 @@
+- Fixed search pagination
+- Fixed description on video page
+- Fixed contact mail
+- Added toggle to on/off user upload, embed, download and import 
+- Added download button
+- Changed video views features to count in session

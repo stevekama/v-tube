@@ -1,0 +1,4 @@
+- Added Embed Code Feature for videos
+- Changed videos order to desc in video categories 
+- Fixed Long text comments
+- Feature to edit embed code for videos

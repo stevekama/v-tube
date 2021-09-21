@@ -1,0 +1,1 @@
+ALTER TABLE `laravellikecomment_comments` CHANGE `comment` `comment` LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL;
