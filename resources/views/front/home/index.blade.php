@@ -46,10 +46,10 @@
     <!--Sidebar-->
     <div class="sidebar">
         <div class="shortcut-links">
-            <a href=""><img src="{{ asset('storage/img/home.png') }}" alt="">
+            <a href="{{ route('home') }}"><img src="{{ asset('storage/img/home.png') }}" alt="">
                 <p>Home</p>
             </a>
-            <a href=""><img src="{{ asset('storage/img/explore.png') }}" alt="">
+            <a href="{{ route('trending') }}"><img src="{{ asset('storage/img/explore.png') }}" alt="">
                 <p>Explore</p>
             </a>
             <a href=""><img src="{{ asset('storage/img/subscriprion.png') }}" alt="">

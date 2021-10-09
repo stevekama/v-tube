@@ -37,6 +37,7 @@ class VideoController extends Controller
             $video = Video::where('id', $id)->where('status', 1)->where('published', 1)->firstOrfail();
         }
 
+        $user = User::find($video->user_id);
 
         $svideos = Video::where('id', '!=', $video->id)->where('status', 1)->where('published', 1)->where('category_id', $video->category_id)->inRandomOrder()->take(6)->get();
 
@@ -76,7 +77,7 @@ class VideoController extends Controller
             $video->save();
         }
 
-        return view('front.videos.show', ['video' => $video, 'svideos' => $svideos])->with('page_title', $video->title);
+        return view('front.videos.show', ['video' => $video, 'svideos' => $svideos, 'user' => $user])->with('page_title', $video->title);
     }
 
 
