@@ -1,109 +1,126 @@
-@extends('front.layouts.default')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('meta')
-<meta name="description" content="{{config('app.meta_description')}}">
-<meta name="keywords" content="{{config('app.meta_keywords')}}">
-@stop
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-@section('content')
-<main> 
-  
-  <!--Main layout-->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center wow fadeIn" data-wow-delay="0.2s"> @if(config('app.ad') == 1)
-        {!! html_entity_decode(config('app.ad3')) !!}
-        @endif </div>
-      @if(!Request::get('page')) 
-      <!--Featured Videos-->
-      <div class="col-lg-12"> 
-        
-        <!--First row-->
-        <div class="row wow fadeIn" data-wow-delay="0.4s">
-          <div class="col-lg-12">
-            <div class="divider-new">
-              <h2 class="h2-responsive">Featured</h2>
-            </div>
-          </div>
+    @yield('meta')
+
+    <meta name="author" content="{{ url('/') }}">
+
+    <title>@if (isset($page_title)){{ $page_title . ' - ' }}@endif {{ config('app.site_name') }} </title>
+
+    <link rel="shortcut icon" href="{{ url('favicon.png') }}" />
+
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+</head>
+
+<body>
+
+    <!-- header -->
+    <nav class="flex-div">
+        <div class="nav-left flex-div">
+            <img src="{{ asset('storage/img/menu.png') }}" class="menu-icon" alt="Menu Icon" />
+            <img src="{{ asset('storage/img/logo.png') }}" class="logo" alt="Logo">
         </div>
-        <!--/.First row--> 
-        <br>
-        
-        <!--Second row-->
-        <div class="row"> @forelse($fvideos as $video)
-          @include('front.inc.video_card')
-          @empty
-          <div class="col-lg-12">
-            <h3 class="text-center text-muted">No Results</h3>
-          </div>
-          @endforelse </div>
-        <!--/.Second row--> 
-        <br/>
-      </div>
-      <!--/.Featured Videos--> 
-      
-      <!--Trending Videos-->
-      <div class="col-lg-12"> 
-        
-        <!--First row-->
-        <div class="row wow fadeIn" data-wow-delay="0.4s">
-          <div class="col-lg-12">
-            <div class="divider-new">
-              <h2 class="h2-responsive">Trending</h2>
+
+        <div class="nav-middle flex-div">
+            <div class="search-box flex-div">
+                <input type="text" placeholder="Search">
+                <img src="{{ asset('storage/img/search.png') }}" alt="Search">
             </div>
-          </div>
+            <!-- <img src="images/voice-search.png" alt="Voice Search" class="mic-icon"> -->
         </div>
-        <!--/.First row--> 
-        <br>
-        
-        <!--Second row-->
-        <div class="row"> @forelse($tvideos as $video)
-          @include('front.inc.video_card')
-          @empty
-          <div class="col-lg-12">
-            <h3 class="text-center text-muted">No Results</h3>
-          </div>
-          @endforelse </div>
-        <!--/.Second row--> 
-        <br/>
-      </div>
-      <!--/.Trending Videos--> 
-      @endif 
-      
-      <!--Recent Videos-->
-      <div class="col-lg-12"> 
-        
-        <!--First row-->
-        <div class="row wow fadeIn" data-wow-delay="0.4s">
-          <div class="col-lg-12">
-            <div class="divider-new">
-              <h2 class="h2-responsive">New Videos</h2>
-            </div>
-          </div>
+
+        <div class="nav-right flex-div">
+            <img src="{{ asset('storage/img/upload.png') }}" alt="">
+            <img src="{{ asset('storage/img/more.png') }}" alt="">
+            <img src="{{ asset('storage/img/notification.png') }}" alt="">
+            <img src="{{ asset('storage/img/Jack.png') }}" class="user-icon" alt="User Profile">
         </div>
-        <!--/.First row--> 
-        <br>
-        
-        <!--Second row-->
-        <div class="row"> @forelse($videos as $video)
-          @include('front.inc.video_card')
-          @empty
-          <div class="col-lg-12">
-            <h3 class="text-center text-muted">No Results</h3>
-          </div>
-          @endforelse </div>
-        <!--/.Second row--> 
-        <br/>
-      </div>
-      <!--/. Recent Videos-->
-      
-      <div class="text-center pagination-container">{{$videos->appends(request()->input())->links()}}</div>
-      <div class="col-lg-12 text-center wow fadeIn" data-wow-delay="0.2s"> @if(config('app.ad') == 1)
-        {!! html_entity_decode(config('app.ad4')) !!}
-        @endif </div>
+    </nav>
+
+    <!--Sidebar-->
+    <div class="sidebar">
+        <div class="shortcut-links">
+            <a href=""><img src="{{ asset('storage/img/home.png') }}" alt="">
+                <p>Home</p>
+            </a>
+            <a href=""><img src="{{ asset('storage/img/explore.png') }}" alt="">
+                <p>Explore</p>
+            </a>
+            <a href=""><img src="{{ asset('storage/img/subscriprion.png') }}" alt="">
+                <p>Subscription</p>
+            </a>
+            <a href=""><img src="{{ asset('storage/img/library.png') }}" alt="">
+                <p>Library</p>
+            </a>
+            <a href=""><img src="{{ asset('storage/img/history.png') }}" alt="">
+                <p>History</p>
+            </a>
+            <a href=""><img src="{{ asset('storage/img/playlist.png') }}" alt="">
+                <p>Playlist</p>
+            </a>
+            <a href=""><img src="{{ asset('storage/img/messages.png') }}" alt="">
+                <p>Messages</p>
+            </a>
+            <a href=""><img src="{{ asset('storage/img/show-more.png') }}" alt="">
+                <p>Show More</p>
+            </a>
+            <hr>
+        </div>
+        <div class="subscribed-list">
+            <h3>SUBSCRIBED</h3>
+            <a href=""><img src="{{ asset('storage/img/Jack.png') }}" alt="">
+                <p>Jack Nicholson</p>
+            </a>
+            <a href=""><img src="{{ asset('storage/img/simon.png') }}" alt="">
+                <p>Simon Baker</p>
+            </a>
+            <a href=""><img src="{{ asset('storage/img/tom.png') }}" alt="">
+                <p>Tom Hardy</p>
+            </a>
+            <a href=""><img src="{{ asset('storage/img/megan.png') }}" alt="">
+                <p>Megan Ryan</p>
+            </a>
+            <a href=""><img src="{{ asset('storage/img/cameron.png') }}" alt="">
+                <p>Cameron Diaz</p>
+            </a>
+        </div>
     </div>
-  </div>
-  <!--/.Main layout--> 
-  
-</main>
-@stop 
+
+    <!--- Main Body -->
+    <div class="container">
+        {{-- <div class="banner">
+            <img src="{{ asset('storage/img/banner.png') }}" alt="">
+        </div> --}}
+
+        <div class="list-container">
+
+            @forelse ($videos as $video)
+                <div class="vid-list">
+                    <a href="{{$video->url}}">
+                        <img src="{{$video->thumb}}" alt="Thumbnail" class="{{$video->title}}">
+                    </a>
+                    <div class="flex-div">
+                        <img src="{{ asset('storage/img/Jack.png') }}" alt="">
+                        <div class="vid-info">
+                            <a href="{{$video->url}}">{{$video->title}}</p>
+                            <p>{{$video->views}} Views &bull; {{$video->created_at->diffForHumans()}}</p>
+                        </div>
+                    </div>
+                </div>
+            @empty
+
+            @endforelse
+
+        </div>
+    </div>
+
+    <script src="{{ asset('js/scripts.js')}}"></script>
+</body>
+
+</html>

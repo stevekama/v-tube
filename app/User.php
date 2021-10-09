@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 'last_name', 'phone', 'email', 'password',
     ];
 
     /**
@@ -38,7 +38,9 @@ class User extends Authenticatable
         $user = self::find($id);
         return [
             'id'     => $user->id,
-            'name'   => $user->name,
+            'first_name'   => $user->first_name,
+            'last_name'   => $user->last_name,
+            'phone'   => $user->phone,
             'email'  => $user->email,
             'url'    => '',  // Optional
             'avatar' => 'placehold',  // Default avatar

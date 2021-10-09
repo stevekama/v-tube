@@ -18,6 +18,7 @@ use Str;
 
 use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class UserController extends Controller
 {
@@ -66,10 +67,11 @@ class UserController extends Controller
     public function register(Request $request)
     {
          // validate the info, create rules for the inputs
-        $rules = array('name'=> 'required|min:3|unique:users,name','email' => 'required|email|unique:users,email',
-         // make sure the email is an actual email
-        'password' => 'required|min:6'
-        
+        $rules = array(
+            'name'=> 'required|min:3|unique:users,name',
+            'email' => 'required|email|unique:users,email',
+            // make sure the email is an actual email
+            'password' => 'required|min:6'
         );
         
         // run the validation rules on the inputs from the form

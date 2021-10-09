@@ -261,7 +261,9 @@ INSERT INTO `setting` (`id`, `option`, `value`, `created_at`, `updated_at`) VALU
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `role` int(1) NOT NULL COMMENT '1 - admin / 2 - user',
@@ -281,9 +283,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `remember_token`, `active`, `activation_code`, `views`, `watch_later`, `history`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@example.com', '$2y$10$xRIDb0eIMfSEgEYYtBE.h.XJTpNERi86dXCdUZ9ZvbS9b/6fCzAMu', 1, 'XlILzBswl0YV3BYu00GjetxaMuPMcqVJW1Nzarwek1TjCSCwnyPSu12vH9Pb', 1, 'a34a685988cf29928867709c6da53a9c80a69fg7', ',1,2,3,5,8,9,6,10,12,13,15,16', ',1,9', ',2,3,8,9,6,5,10,12,13,15,16', '2017-03-21 02:36:35', '2018-08-22 08:35:34'),
-(2, 'demo', 'demo@example.com', '$2y$10$Ned4I/m892u1fYMEwalU2.CyNP/RRtiGxcRznTBx.U8RBH0t5FZge', 2, 'IONemkvrfJpMHBNpsBQLmXD3i7lRwUpC8fPErSr9LwyVtecO8GAqdvsahAlG', 1, 'a34a685988cf29928867709c6da53a9c80a69fd3', '', '', '', '2017-03-21 02:36:35', '2018-08-21 04:20:19');
+INSERT INTO `users` (`first_name`, `last_name`, `phone`, `email`, `password`, `role`, `remember_token`, `active`, `activation_code`, `views`, `watch_later`, `history`, `created_at`, `updated_at`) VALUES
+('admin', 'admin', '0712567809', 'admin@example.com', '$2y$10$xRIDb0eIMfSEgEYYtBE.h.XJTpNERi86dXCdUZ9ZvbS9b/6fCzAMu', 1, 'XlILzBswl0YV3BYu00GjetxaMuPMcqVJW1Nzarwek1TjCSCwnyPSu12vH9Pb', 1, 'a34a685988cf29928867709c6da53a9c80a69fg7', ',1,2,3,5,8,9,6,10,12,13,15,16', ',1,9', ',2,3,8,9,6,5,10,12,13,15,16', '2017-03-21 02:36:35', '2018-08-22 08:35:34'),
+('demo', 'demo', '0715356718', 'demo@example.com', '$2y$10$Ned4I/m892u1fYMEwalU2.CyNP/RRtiGxcRznTBx.U8RBH0t5FZge', 2, 'IONemkvrfJpMHBNpsBQLmXD3i7lRwUpC8fPErSr9LwyVtecO8GAqdvsahAlG', 1, 'a34a685988cf29928867709c6da53a9c80a69fd3', '', '', '', '2017-03-21 02:36:35', '2018-08-21 04:20:19');
 
 -- --------------------------------------------------------
 
