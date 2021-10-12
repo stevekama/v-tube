@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('front.layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@if (isset($page_title)){{ $page_title . ' - ' }}@endif {{ config('app.site_name') }}</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-
+@section('show_scripts')
     <script src="{{ asset('/vendor/laravelLikeComment/js/script.js') }}" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -45,56 +35,33 @@
             if (response_field.length > 0) $('#' + response_field).html('Copied');
         }
     </script>
-</head>
+@endsection
 
-<body>
-
-    <!-- header -->
-    <nav class="flex-div">
-        <div class="nav-left flex-div">
-            <img src="{{ asset('storage/img/menu.png') }}" class="menu-icon" alt="Menu Icon" />
-            <a href="{{ route("home") }}">
-                <img src="{{ asset('storage/img/logo.png') }}" class="logo" alt="Logo">
-            </a>
-        </div>
-
-        <div class="nav-middle flex-div">
-            <div class="search-box flex-div">
-                <input type="text" placeholder="Search">
-                <img src="{{ asset('storage/img/search.png') }}" alt="Search">
-            </div>
-            <!-- <img src="images/voice-search.png" alt="Voice Search" class="mic-icon"> -->
-        </div>
-
-        <div class="nav-right flex-div">
-            <a href="#"><img src="{{ asset('storage/img/upload.png') }}" alt=""></a>
-            <img src="{{ asset('storage/img/more.png') }}" alt="">
-            <img src="{{ asset('storage/img/notification.png') }}" alt="">
-            <img src="{{ asset('storage/img/Jack.png') }}" class="user-icon" alt="User Profile">
-        </div>
-    </nav>
+@section('content')
     @php
-        $page_url = $video->url;
+    $page_url = $video->url;
     @endphp
 
-    <div class="container play-container">
+    <div class="main-container play-container">
         <div class="row">
             <div class="play-video">
                 {{-- <video controls autoplay>
-                    <source src="{{ url('watch/' . $video->id . '/' . $video->slug) }}" type="video/mp4">
-                </video> --}}
+                <source src="{{ url('watch/' . $video->id . '/' . $video->slug) }}" type="video/mp4">
+            </video> --}}
 
                 @if ($video->type == 1)
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe src="{{ url('watch/' . $video->id . '/' . $video->slug) }}" allowfullscreen
-                            scrolling="no" frameBorder="0" height="100%"></iframe>
-                    </div>
+                    {{-- <div class="embed-responsive embed-responsive-16by9"> --}}
+                        <iframe src="{{ url('watch/' . $video->id . '/' . $video->slug) }}" allowfullscreen scrolling="no"
+                            frameBorder="0" height="100%"></iframe>
+                    {{-- </div> --}}
                 @else
-                    <div class="embed-responsive embed-responsive-16by9"> {!! $video->content !!} </div>
+                    {{-- <div class="embed-responsive embed-responsive-16by9">  --}}
+                        {!! $video->content !!} 
+                    {{-- </div> --}}
                 @endif
 
                 <div class="tags">
-                    <a href="#">{!! html_entity_decode( $video->tags ) !!}</a>
+                    <a href="#">{!! html_entity_decode($video->tags) !!}</a>
                 </div>
                 <h3>
                     {{ $video->title }}
@@ -115,9 +82,8 @@
                                 </h4>
                             </a>
                         @endif
-                        <a href="#" data-id="{{ $video->id }}" class="pull-left watch_later"
-                            style="cursor: pointer;" data-toggle="tooltip" data-placement="top"
-                            title="Add to watch later">
+                        <a href="#" data-id="{{ $video->id }}" class="pull-left watch_later" style="cursor: pointer;"
+                            data-toggle="tooltip" data-placement="top" title="Add to watch later">
                             <i class="fa fa-plus"></i>&nbsp;Add to&nbsp;
                         </a>
                         <a href="#" class="pull-right" style="cursor: pointer;" data-toggle="modal"
@@ -195,8 +161,7 @@
                     </div>
                 @empty
                     <div class="side-video-list">
-                        <a href="" class="small-thumbnail"><img src="{{ asset('storage/img/noimage.png') }}"
-                                alt=""></a>
+                        <a href="" class="small-thumbnail"><img src="{{ asset('storage/img/noimage.png') }}" alt=""></a>
                         <div class="vid-info">
                             <a href="">No similar videos available</a>
                             <p>No Similar vieos found!</p>
@@ -208,6 +173,5 @@
             </div>
         </div>
     </div>
-</body>
 
-</html>
+@endsection
